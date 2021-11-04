@@ -390,7 +390,7 @@ public class Game {
     }
 
     /**Jogo.*/
-    public void jogo() {
+    public void saudacao() {
         System.out.println("Bem Vindo ao 2048, utilize as letras W, A, S, D para jogar:\nCima (W) - Baixo (S) - Esquerda (A) - Direita (D) - Sair (L)\n(Qualquer botão para continuar)");
         sc.next();
         System.out.println("\n");

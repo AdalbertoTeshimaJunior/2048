@@ -3,37 +3,46 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        char opcao;
-        Game game = new Game();
-        game.jogo();
-        System.out.println(game.toString(game));
+        Scanner scanner = new Scanner(System.in);
+        Tabuleiro tabuleiro = new Tabuleiro();
+        char movimento;
+
+        inicioDeJogo(scanner,tabuleiro);
+        System.out.println(tabuleiro);
+
         do {
-            opcao = sc.next().toUpperCase().charAt(0);
-            switch (opcao) {
+            movimento = scanner.next().toUpperCase().charAt(0);
+            switch (movimento) {
                 case 'W' -> {
-                    game.cima();
-                    game.colocaNumero();
+                    tabuleiro.movimentoWS(0, 1, 2, 3);
+                    tabuleiro.adicionarPosicaoAleatoria();
                 }
                 case 'A' -> {
-                    game.esquerda();
-                    game.colocaNumero();
+                    tabuleiro.movimentoAD(0, 1, 2, 3);
+                    tabuleiro.adicionarPosicaoAleatoria();
                 }
                 case 'S' -> {
-                    game.baixo();
-                    game.colocaNumero();
+                    tabuleiro.movimentoWS(3, 2, 1, 0);
+                    tabuleiro.adicionarPosicaoAleatoria();
                 }
                 case 'D' -> {
-                    game.direita();
-                    game.colocaNumero();
+                    tabuleiro.movimentoAD(3, 2, 1, 0);
+                    tabuleiro.adicionarPosicaoAleatoria();
                 }
                 case 'L' -> {
                     System.out.println("\nSaindo . . .\n");
                     return;
                 }
-                default -> System.out.println("Digite uma opção válida! ( W - A - S - D )");
+                default -> System.out.println("Digite uma opção válida! ( W - A - S - D - L )");
             }
-            System.out.println(game.toString(game));
-        } while (game.fim());
+            System.out.println(tabuleiro);
+        } while (tabuleiro.fim());
+    }
+
+    public static void inicioDeJogo(Scanner sc, Tabuleiro tabuleiro) {
+        System.out.println("Bem Vindo ao 2048, utilize as letras W, A, S, D para jogar:\nCima (W) - Baixo (S) - Esquerda (A) - Direita (D) - Sair (L)\n(Qualquer botão para continuar)");
+        sc.next();
+        System.out.println("\n");
+        tabuleiro.populaTabuleiro();
     }
 }

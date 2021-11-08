@@ -37,10 +37,12 @@ public class Main {
             }
             System.out.println(tabuleiro);
         } while (tabuleiro.fim());
+
+        System.out.println("\nFim de Jogo . . .\nSaindo . . .\n");
     }
 
     public static void inicioDeJogo(Scanner sc, Tabuleiro tabuleiro) {
-        System.out.println("Bem Vindo ao 2048, utilize as letras W, A, S, D para jogar:\nCima (W) - Baixo (S) - Esquerda (A) - Direita (D) - Sair (L)\n(Qualquer botão para continuar)");
+        System.out.println("Bem Vindo ao 2048, utilize as letras W, A, S, D e L para jogar:\nCima (W) - Baixo (S) - Esquerda (A) - Direita (D) - Sair (L)\n(Qualquer botão para continuar)");
         sc.next();
         System.out.println("\n");
         tabuleiro.populaTabuleiro();

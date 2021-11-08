@@ -16,10 +16,10 @@ public class Tabuleiro {
     public void populaTabuleiro() {
         int sorte1, sorte2, sorte3, sorte4;
         do {
-            sorte1 = geradorAleatorio.gerarNumeroAleatorio();
-            sorte2 = geradorAleatorio.gerarNumeroAleatorio();
-            sorte3 = geradorAleatorio.gerarNumeroAleatorio();
-            sorte4 = geradorAleatorio.gerarNumeroAleatorio();
+            sorte1 = geradorAleatorio.gerarPosicaoAleatoria();
+            sorte2 = geradorAleatorio.gerarPosicaoAleatoria();
+            sorte3 = geradorAleatorio.gerarPosicaoAleatoria();
+            sorte4 = geradorAleatorio.gerarPosicaoAleatoria();
         } while (sorte1 == sorte3 && sorte2 == sorte4);
 
         for (int i = 0; i < 4; i++) {
@@ -51,14 +51,14 @@ public class Tabuleiro {
                                     ;
                                     removerPosicaoOcupada(n3, i);
                                 } else {
-                                    tabuleiro[n2][i] = tabuleiro[n3][i];
-                                    tabuleiro[n3][i] = tabuleiro[n4][i];
+                                    tabuleiro[n2][i].valor = tabuleiro[n3][i].valor;
+                                    tabuleiro[n3][i].valor = tabuleiro[n4][i].valor;
                                 }
                                 tabuleiro[n1][i].duplicateValue();
                                 removerPosicaoOcupada(n4, i);
                             } else if (tabuleiro[n2][i].equals(tabuleiro[n3][i])) {
                                 tabuleiro[n2][i].duplicateValue();
-                                tabuleiro[n3][i] = tabuleiro[n4][i];
+                                tabuleiro[n3][i].valor = tabuleiro[n4][i].valor;
                                 removerPosicaoOcupada(n4, i);
                             } else if (tabuleiro[n3][i].equals(tabuleiro[n4][i])) {
                                 tabuleiro[n3][i].duplicateValue();
@@ -67,16 +67,16 @@ public class Tabuleiro {
                         } else {
                             if (tabuleiro[n2][i].equals(tabuleiro[n3][i])) {
                                 tabuleiro[n1][i].setValor(tabuleiro[n2][i].valor * 2);
-                                tabuleiro[n2][i] = tabuleiro[n4][i];
+                                tabuleiro[n2][i].valor = tabuleiro[n4][i].valor;
                                 removerPosicaoOcupada(n3, i);
                             } else {
-                                tabuleiro[n1][i] = tabuleiro[n2][i];
+                                tabuleiro[n1][i].valor = tabuleiro[n2][i].valor;
                                 if (tabuleiro[n3][i].equals(tabuleiro[n4][i])) {
                                     tabuleiro[n2][i].setValor(tabuleiro[n3][i].valor * 2);
                                     removerPosicaoOcupada(n3, i);
                                 } else {
-                                    tabuleiro[n2][i] = tabuleiro[n3][i];
-                                    tabuleiro[n3][i] = tabuleiro[n4][i];
+                                    tabuleiro[n2][i].valor = tabuleiro[n3][i].valor;
+                                    tabuleiro[n3][i].valor = tabuleiro[n4][i].valor;
                                 }
                             }
                             removerPosicaoOcupada(n4, i);
@@ -85,14 +85,14 @@ public class Tabuleiro {
                     } else if (t1) {
                         if (tabuleiro[n1][i].equals(tabuleiro[n3][i])) {
                             tabuleiro[n1][i].duplicateValue();
-                            tabuleiro[n2][i] = tabuleiro[n4][i];
+                            tabuleiro[n2][i].valor = tabuleiro[n4][i].valor;
                             removerPosicaoOcupada(n3, i);
                         } else if (tabuleiro[n3][i].equals(tabuleiro[n4][i])) {
                             tabuleiro[n2][i].setValor(tabuleiro[n3][i].valor * 2);
                             removerPosicaoOcupada(n3, i);
                         } else {
-                            tabuleiro[n2][i] = tabuleiro[n3][i];
-                            tabuleiro[n3][i] = tabuleiro[n4][i];
+                            tabuleiro[n2][i].valor = tabuleiro[n3][i].valor;
+                            tabuleiro[n3][i].valor = tabuleiro[n4][i].valor;
                         }
                         removerPosicaoOcupada(n4, i);
                         adicionarPosicaoOcupada(n2, i);
@@ -100,8 +100,8 @@ public class Tabuleiro {
                         if (tabuleiro[n3][i].equals(tabuleiro[n4][i])) {
                             tabuleiro[n1][i].setValor(tabuleiro[n3][i].valor * 2);
                         } else {
-                            tabuleiro[n1][i] = tabuleiro[n3][i];
-                            tabuleiro[n2][i] = tabuleiro[n4][i];
+                            tabuleiro[n1][i].valor = tabuleiro[n3][i].valor;
+                            tabuleiro[n2][i].valor = tabuleiro[n4][i].valor;
                             adicionarPosicaoOcupada(n2, i);
                         }
                         removerPosicaoOcupada(n3, i);
@@ -112,11 +112,11 @@ public class Tabuleiro {
                     if (t1) {
                         if (tabuleiro[n1][i].equals(tabuleiro[n2][i])) {
                             tabuleiro[n1][i].duplicateValue();
-                            tabuleiro[n2][i] = tabuleiro[n4][i];
+                            tabuleiro[n2][i].valor = tabuleiro[n4][i].valor;
                         } else if (tabuleiro[n2][i].equals(tabuleiro[n4][i])) {
                             tabuleiro[n2][i].duplicateValue();
                         } else {
-                            tabuleiro[n3][i] = tabuleiro[n4][i];
+                            tabuleiro[n3][i].valor = tabuleiro[n4][i].valor;
                             adicionarPosicaoOcupada(n3, i);
                         }
                     } else {
@@ -124,8 +124,8 @@ public class Tabuleiro {
                             tabuleiro[n1][i].setValor(tabuleiro[n2][i].valor * 2);
                             removerPosicaoOcupada(n2, i);
                         } else {
-                            tabuleiro[n1][i] = tabuleiro[n2][i];
-                            tabuleiro[n2][i] = tabuleiro[n4][i];
+                            tabuleiro[n1][i].valor = tabuleiro[n2][i].valor;
+                            tabuleiro[n2][i].valor = tabuleiro[n4][i].valor;
                         }
                         adicionarPosicaoOcupada(n1, i);
                     }
@@ -135,11 +135,11 @@ public class Tabuleiro {
                         if (tabuleiro[n1][i].equals(tabuleiro[n4][i])) {
                             tabuleiro[n1][i].duplicateValue();
                         } else {
-                            tabuleiro[n2][i] = tabuleiro[n4][i];
+                            tabuleiro[n2][i].valor = tabuleiro[n4][i].valor;
                             adicionarPosicaoOcupada(n2, i);
                         }
                     } else {
-                        tabuleiro[n1][i] = tabuleiro[n4][i];
+                        tabuleiro[n1][i].valor = tabuleiro[n4][i].valor;
                         adicionarPosicaoOcupada(n1, i);
                     }
                     removerPosicaoOcupada(n4, i);
@@ -149,7 +149,7 @@ public class Tabuleiro {
                     if (t1) {
                         if (tabuleiro[n1][i].equals(tabuleiro[n2][i])) {
                             tabuleiro[n1][i].duplicateValue();
-                            tabuleiro[n2][i] = tabuleiro[n3][i];
+                            tabuleiro[n2][i].valor = tabuleiro[n3][i].valor;
                             removerPosicaoOcupada(n3, i);
                         } else if (tabuleiro[n2][i].equals(tabuleiro[n3][i])) {
                             tabuleiro[n2][i].duplicateValue();
@@ -160,8 +160,8 @@ public class Tabuleiro {
                             tabuleiro[n1][i].setValor(tabuleiro[n2][i].valor * 2);
                             removerPosicaoOcupada(n2, i);
                         } else {
-                            tabuleiro[n1][i] = tabuleiro[n2][i];
-                            tabuleiro[n2][i] = tabuleiro[n3][i];
+                            tabuleiro[n1][i].valor = tabuleiro[n2][i].valor;
+                            tabuleiro[n2][i].valor = tabuleiro[n3][i].valor;
                         }
                         removerPosicaoOcupada(n3, i);
                         adicionarPosicaoOcupada(n1, i);
@@ -170,12 +170,12 @@ public class Tabuleiro {
                     if (tabuleiro[n1][i].equals(tabuleiro[n3][i])) {
                         tabuleiro[n1][i].duplicateValue();
                     } else {
-                        tabuleiro[n2][i] = tabuleiro[n3][i];
+                        tabuleiro[n2][i].valor = tabuleiro[n3][i].valor;
                         adicionarPosicaoOcupada(n2, i);
                     }
                     removerPosicaoOcupada(n3, i);
                 } else {
-                    tabuleiro[n1][i] = tabuleiro[n3][i];
+                    tabuleiro[n1][i].valor = tabuleiro[n3][i].valor;
                     removerPosicaoOcupada(n3, i);
                     adicionarPosicaoOcupada(n1, i);
                 }
@@ -186,7 +186,7 @@ public class Tabuleiro {
                         removerPosicaoOcupada(n2, i);
                     }
                 } else {
-                    tabuleiro[n1][i] = tabuleiro[n2][i];
+                    tabuleiro[n1][i].valor = tabuleiro[n2][i].valor;
                     removerPosicaoOcupada(n2, i);
                     adicionarPosicaoOcupada(n1, i);
                 }
@@ -212,14 +212,14 @@ public class Tabuleiro {
                                     tabuleiro[i][n2].setValor(tabuleiro[i][n3].valor * 2);
                                     removerPosicaoOcupada(i, n3);
                                 } else {
-                                    tabuleiro[i][n2] = tabuleiro[i][n3];
-                                    tabuleiro[i][n3] = tabuleiro[i][n4];
+                                    tabuleiro[i][n2].valor = tabuleiro[i][n3].valor;
+                                    tabuleiro[i][n3].valor = tabuleiro[i][n4].valor;
                                 }
                                 tabuleiro[i][n1].duplicateValue();
                                 removerPosicaoOcupada(i, n4);
                             } else if (tabuleiro[i][n2].equals(tabuleiro[i][n3])) {
                                 tabuleiro[i][n2].setValor(tabuleiro[i][n2].valor * 2);
-                                tabuleiro[i][n3] = tabuleiro[i][n4];
+                                tabuleiro[i][n3].valor = tabuleiro[i][n4].valor;
                                 removerPosicaoOcupada(i, n4);
                             } else if (tabuleiro[i][n3].equals(tabuleiro[i][n4])) {
                                 tabuleiro[i][n3].duplicateValue();
@@ -227,17 +227,17 @@ public class Tabuleiro {
                             }
                         } else {
                             if (tabuleiro[i][n2].equals(tabuleiro[i][n3])) {
-                                tabuleiro[i][n2].setValor(tabuleiro[i][n2].valor * 2);
-                                tabuleiro[i][n2] = tabuleiro[i][n4];
+                                tabuleiro[i][n1].setValor(tabuleiro[i][n2].valor * 2);
+                                tabuleiro[i][n2].valor = tabuleiro[i][n4].valor;
                                 removerPosicaoOcupada(i, n3);
                             } else {
-                                tabuleiro[i][n1] = tabuleiro[i][n2];
+                                tabuleiro[i][n1].valor = tabuleiro[i][n2].valor;
                                 if (tabuleiro[i][n3].equals(tabuleiro[i][n4])) {
                                     tabuleiro[i][n2].setValor(tabuleiro[i][n3].valor * 2);
                                     removerPosicaoOcupada(i, n3);
                                 } else {
-                                    tabuleiro[i][n2] = tabuleiro[i][n3];
-                                    tabuleiro[i][n3] = tabuleiro[i][n4];
+                                    tabuleiro[i][n2].valor = tabuleiro[i][n3].valor;
+                                    tabuleiro[i][n3].valor = tabuleiro[i][n4].valor;
                                 }
                             }
                             removerPosicaoOcupada(i, n4);
@@ -246,14 +246,14 @@ public class Tabuleiro {
                     } else if (t1) {
                         if (tabuleiro[i][n1].equals(tabuleiro[i][n3])) {
                             tabuleiro[i][n1].duplicateValue();
-                            tabuleiro[i][n2] = tabuleiro[i][n4];
+                            tabuleiro[i][n2].valor = tabuleiro[i][n4].valor;
                             removerPosicaoOcupada(i, n3);
                         } else if (tabuleiro[i][n3].equals(tabuleiro[i][n4])) {
                             tabuleiro[i][n2].setValor(tabuleiro[i][n3].valor * 2);
                             removerPosicaoOcupada(i, n3);
                         } else {
-                            tabuleiro[i][n2] = tabuleiro[i][n3];
-                            tabuleiro[i][n3] = tabuleiro[i][n4];
+                            tabuleiro[i][n2].valor = tabuleiro[i][n3].valor;
+                            tabuleiro[i][n3].valor = tabuleiro[i][n4].valor;
                         }
                         removerPosicaoOcupada(i, n4);
                         adicionarPosicaoOcupada(i, n2);
@@ -261,8 +261,8 @@ public class Tabuleiro {
                         if (tabuleiro[i][n3].equals(tabuleiro[i][n4])) {
                             tabuleiro[i][n1].setValor(tabuleiro[i][n3].valor * 2);
                         } else {
-                            tabuleiro[i][n1] = tabuleiro[i][n3];
-                            tabuleiro[i][n2] = tabuleiro[i][n4];
+                            tabuleiro[i][n1].valor = tabuleiro[i][n3].valor;
+                            tabuleiro[i][n2].valor = tabuleiro[i][n4].valor;
                             adicionarPosicaoOcupada(i, n2);
                         }
                         removerPosicaoOcupada(i, n3);
@@ -273,11 +273,11 @@ public class Tabuleiro {
                     if (t1) {
                         if (tabuleiro[i][n1].equals(tabuleiro[i][n2])) {
                             tabuleiro[i][n1].duplicateValue();
-                            tabuleiro[i][n2] = tabuleiro[i][n4];
+                            tabuleiro[i][n2].valor = tabuleiro[i][n4].valor;
                         } else if (tabuleiro[i][n2].equals(tabuleiro[i][n4])) {
                             tabuleiro[i][n2].duplicateValue();
                         } else {
-                            tabuleiro[i][n3] = tabuleiro[i][n4];
+                            tabuleiro[i][n3].valor = tabuleiro[i][n4].valor;
                             adicionarPosicaoOcupada(i, n3);
                         }
                     } else {
@@ -285,8 +285,8 @@ public class Tabuleiro {
                             tabuleiro[i][n1].setValor(tabuleiro[i][n2].valor * 2);
                             removerPosicaoOcupada(i, n2);
                         } else {
-                            tabuleiro[i][n1] = tabuleiro[i][n2];
-                            tabuleiro[i][n2] = tabuleiro[i][n4];
+                            tabuleiro[i][n1].valor = tabuleiro[i][n2].valor;
+                            tabuleiro[i][n2].valor = tabuleiro[i][n4].valor;
                         }
                         adicionarPosicaoOcupada(i, n1);
                     }
@@ -296,11 +296,11 @@ public class Tabuleiro {
                         if (tabuleiro[i][n1].equals(tabuleiro[i][n4])) {
                             tabuleiro[i][n1].duplicateValue();
                         } else {
-                            tabuleiro[i][n2] = tabuleiro[i][n4];
+                            tabuleiro[i][n2].valor = tabuleiro[i][n4].valor;
                             adicionarPosicaoOcupada(i, n2);
                         }
                     } else {
-                        tabuleiro[i][n1] = tabuleiro[i][n4];
+                        tabuleiro[i][n1].valor = tabuleiro[i][n4].valor;
                         adicionarPosicaoOcupada(i, n1);
                     }
                     removerPosicaoOcupada(i, n4);
@@ -310,7 +310,7 @@ public class Tabuleiro {
                     if (t1) {
                         if (tabuleiro[i][n1].equals(tabuleiro[i][n2])) {
                             tabuleiro[i][n1].duplicateValue();
-                            tabuleiro[i][n2] = tabuleiro[i][n3];
+                            tabuleiro[i][n2].valor = tabuleiro[i][n3].valor;
                             removerPosicaoOcupada(i, n3);
                         } else if (tabuleiro[i][n2].equals(tabuleiro[i][n3])) {
                             tabuleiro[i][n2].duplicateValue();
@@ -321,8 +321,8 @@ public class Tabuleiro {
                             tabuleiro[i][n1].setValor(tabuleiro[i][n2].valor * 2);
                             removerPosicaoOcupada(i, n2);
                         } else {
-                            tabuleiro[i][n1] = tabuleiro[i][n2];
-                            tabuleiro[i][n2] = tabuleiro[i][n3];
+                            tabuleiro[i][n1].valor = tabuleiro[i][n2].valor;
+                            tabuleiro[i][n2].valor = tabuleiro[i][n3].valor;
                         }
                         removerPosicaoOcupada(i, n3);
                         adicionarPosicaoOcupada(i, n1);
@@ -331,12 +331,12 @@ public class Tabuleiro {
                     if (tabuleiro[i][n1].equals(tabuleiro[i][n3])) {
                         tabuleiro[i][n1].duplicateValue();
                     } else {
-                        tabuleiro[i][n2] = tabuleiro[i][n3];
+                        tabuleiro[i][n2].valor = tabuleiro[i][n3].valor;
                         adicionarPosicaoOcupada(i, n2);
                     }
-                    removerPosicaoOcupada(n3, i);
+                    removerPosicaoOcupada(i, n3);
                 } else {
-                    tabuleiro[i][n1] = tabuleiro[i][n3];
+                    tabuleiro[i][n1].valor = tabuleiro[i][n3].valor;
                     removerPosicaoOcupada(i, n3);
                     adicionarPosicaoOcupada(i, n1);
                 }
@@ -347,7 +347,7 @@ public class Tabuleiro {
                         removerPosicaoOcupada(i, n2);
                     }
                 } else {
-                    tabuleiro[i][n1] = tabuleiro[i][n2];
+                    tabuleiro[i][n1].valor = tabuleiro[i][n2].valor;
                     removerPosicaoOcupada(i, n2);
                     adicionarPosicaoOcupada(i, n1);
                 }
@@ -378,8 +378,8 @@ public class Tabuleiro {
     }
 
     public void removerPosicaoOcupada(int linha, int coluna) {
-        tabuleiro[linha][coluna] = null;
-        posicoesOcupadas.removeIf(item -> item.equals(new int[]{linha, coluna}));
+        posicoesOcupadas.removeIf(item -> Arrays.equals(item, tabuleiro[linha][coluna].posicao));
+        tabuleiro[linha][coluna].valor = 0;
     }
 
     public void adicionarPosicaoAleatoria() {
@@ -398,14 +398,14 @@ public class Tabuleiro {
         adicionarPosicaoOcupada(numeroAleatorio1, numeroAleatorio2);
     }
 
-    //Se tiver algum bloco na posição retorna 2/5 no meio do cu.
+    //Se tiver algum bloco na posição retorna 2/5.
     public boolean verificaBlocoOcupado(BlocoNumerico blocoNumerico) {
         if(blocoNumerico == null) return  false;
         return posicoesOcupadas.stream().anyMatch(item -> Arrays.equals(item, blocoNumerico.posicao));
     }
 
     public boolean fim() {
-        max = 0;
+        int max = 0;
         for (Object posicoes : posicoesOcupadas) {
             max++;
         }
@@ -424,7 +424,7 @@ public class Tabuleiro {
         for (int i = 0; i < 4; i++) {
             sb.append("|   ");
             for (int j = 0; j < 4; j++) {
-                if (!verificaBlocoOcupado(tabuleiro[i][j])) {
+                if (tabuleiro[i][j].valor == 0) {
                     sb.append("    |   ");
                 } else if (tabuleiro[i][j].getValor() < 10) {
                     sb.append(tabuleiro[i][j].getValor() + "   |   ");

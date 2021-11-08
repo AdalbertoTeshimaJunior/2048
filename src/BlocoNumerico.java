@@ -10,6 +10,10 @@ public class BlocoNumerico {
         this.valor = valor;
     }
 
+    public BlocoNumerico(int[] posicao){
+        this.posicao = posicao;
+    }
+
     public int[] getPosicao() {
         return posicao;
     }
